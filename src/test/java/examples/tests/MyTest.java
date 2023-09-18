@@ -40,6 +40,7 @@ public class MyTest {
     }
 
     @Test
+    @Tag("tag2")
     void test2() {
         System.out.println("Тест 2");
         QAService qaService = new QAService();
