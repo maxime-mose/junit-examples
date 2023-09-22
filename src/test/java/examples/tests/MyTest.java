@@ -28,6 +28,7 @@ public class MyTest {
         System.out.println("Перед каждым");
     }
 
+    @MyAnno
     @Test
     // mvn clean test -Dgroups=tag1
     @Tag("tag1")
@@ -46,7 +47,7 @@ public class MyTest {
         QAService qaService = new QAService();
         qaService.add(new QA());
         List<QA> qaList = qaService.getAll();
-        assertEquals(1, qaList.size());
+        assertEquals(2, qaList.size());
     }
 
     @Test
