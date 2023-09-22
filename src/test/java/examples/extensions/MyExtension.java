@@ -1,8 +1,6 @@
 package examples.extensions;
 
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 
 /**
  * Задания:
@@ -10,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
  * 2. Добавить ещё один Extension с текстом "Extension: после всех".
  * 3. Навесить ещё один тэг.
  */
-public class MyExtension implements AfterEachCallback, BeforeAllCallback {
+public class MyExtension implements AfterEachCallback, BeforeAllCallback, AfterTestExecutionCallback, AfterAllCallback {
     @Override
     public void afterEach(ExtensionContext extensionContext) {
         System.out.println("Extension: после каждого");
@@ -20,5 +18,15 @@ public class MyExtension implements AfterEachCallback, BeforeAllCallback {
     @Override
     public void beforeAll(ExtensionContext extensionContext) {
         System.out.println("Extension: перед всеми");
+    }
+
+    @Override
+    public void afterTestExecution(ExtensionContext extensionContext) {
+        System.out.println("Extension: между @Test и @AfterEach");
+    }
+
+    @Override
+    public void afterAll(ExtensionContext extensionContext) {
+        System.out.println("Extension: после всех");
     }
 }
