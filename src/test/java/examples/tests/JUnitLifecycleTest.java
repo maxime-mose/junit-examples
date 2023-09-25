@@ -1,24 +1,18 @@
 package examples.tests;
 
-import examples.QA;
-import examples.QAService;
 import examples.extensions.MyExtension;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(
         MyExtension.class
 )
 @DisplayName("Тестовый класс")
-public class MyTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class JUnitLifecycleTest {
 
     @BeforeAll
-    static void beforeAll() {
+    void beforeAll() {
         System.out.println("Перед всеми");
     }
 
@@ -35,29 +29,19 @@ public class MyTest {
     @DisplayName("Тест 1")
     void test1() {
         System.out.println("Тест 1");
-        QAService qaService = new QAService();
-        List<QA> qaList = qaService.getAll();
-        assertTrue(qaList.isEmpty());
     }
 
     @Test
-    @Tag("tag2") //для второго теста добавлен tag2
+    @Tag("tag2")
+        //для второго теста добавлен tag2
     void test2() {
         System.out.println("Тест 2");
-        QAService qaService = new QAService();
-        qaService.add(new QA());
-        List<QA> qaList = qaService.getAll();
-        assertEquals(2, qaList.size());
     }
 
     @Test
     @Tag("tag1")
     void test3() {
         System.out.println("Тест 3");
-        QAService qaService = new QAService();
-        qaService.remove(new QA());
-        List<QA> qaList = qaService.getAll();
-        assertEquals(0, qaList.size());
     }
 
     @AfterEach
