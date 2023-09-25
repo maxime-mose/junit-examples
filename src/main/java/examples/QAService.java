@@ -14,4 +14,6 @@ public class QAService {
     public void add(QA qa) {
         qaList.add(qa);
     }
+
+    public void remove(QA qa) { qaList.remove(qa);}
 }

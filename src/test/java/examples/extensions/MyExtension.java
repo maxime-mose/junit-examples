@@ -3,7 +3,7 @@ package examples.extensions;
 import org.junit.jupiter.api.extension.*;
 
 
-public class MyExtension implements AfterEachCallback, BeforeAllCallback, AfterTestExecutionCallback, AfterAllCallback {
+public class MyExtension implements AfterEachCallback, BeforeAllCallback, AfterTestExecutionCallback, AfterAllCallback, BeforeEachCallback, BeforeTestExecutionCallback{
     @Override
     public void afterEach(ExtensionContext extensionContext) {
         System.out.println("Extension: после каждого");
@@ -23,5 +23,15 @@ public class MyExtension implements AfterEachCallback, BeforeAllCallback, AfterT
     @Override
     public void afterAll(ExtensionContext extensionContext) {
         System.out.println("Extension: после всех");
+    }
+
+    @Override
+    public void beforeEach(ExtensionContext extensionContext) {
+        System.out.println("Extension: перед каждым");
+    }
+
+    @Override
+    public void beforeTestExecution(ExtensionContext extensionContext) {
+        System.out.println("Extension: между @BeforeEach и @Test");
     }
 }
