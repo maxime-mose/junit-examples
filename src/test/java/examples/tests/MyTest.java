@@ -54,6 +54,10 @@ public class MyTest {
     @Tag("tag1")
     void test3() {
         System.out.println("Тест 3");
+        QAService qaService = new QAService();
+        qaService.remove(new QA());
+        List<QA> qaList = qaService.getAll();
+        assertEquals(0, qaList.size());
     }
 
     @AfterEach

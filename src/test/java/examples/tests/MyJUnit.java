@@ -2,9 +2,9 @@ package examples.tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 public class MyJUnit {
 
@@ -17,8 +17,9 @@ public class MyJUnit {
                 continue;
             }
             var tagAnnotation = method.getAnnotation(Tag.class);
-            // ... логика
-            method.invoke(new MyTest());
+            if (Objects.equals(tagAnnotation.value(), "tag1")) {
+                method.invoke(new MyTest());
+            }
         }
     }
 }
