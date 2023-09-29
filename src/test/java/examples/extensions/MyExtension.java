@@ -7,6 +7,7 @@ public class MyExtension implements AfterEachCallback, BeforeAllCallback, AfterT
     @Override
     public void afterEach(ExtensionContext extensionContext) {
         System.out.println("Extension: после каждого");
+        System.out.println("Display name для данного теста: " + extensionContext.getDisplayName());
         extensionContext.getTags().forEach(t -> System.out.println("На тесте есть тэг: " + t));
     }
 

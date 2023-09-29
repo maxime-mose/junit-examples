@@ -3,15 +3,15 @@ package examples.tests;
 import examples.QA;
 import examples.QAService;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import java.util.List;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.RepeatedTest.LONG_DISPLAY_NAME;
 
 @DisplayName("Тесты на QAService")
+//@TestMethodOrder(MethodOrderer.Random.class)
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class QaServiceTest {
 
@@ -40,8 +40,8 @@ public class QaServiceTest {
 //        @Disabled("Падает из-за бага")
 //        @DisabledOnOs(OS.LINUX)
 //        @DisabledOnJre(JRE.JAVA_11)
-//        @DisabledIfSystemProperty(named = "asdf", matches = "qwerty123")
-        @DisplayName("Добавление 2 QA")
+        @DisabledIfSystemProperty(named = "asdf", matches = "qwerty123")
+//        @DisplayName("Добавление 2 QA")
             // для второго теста добавлен tag2
         void test2() {
             qaService.add(new QA());
@@ -54,7 +54,8 @@ public class QaServiceTest {
     @Test
     // mvn clean test -Dgroups=tag1
     @Tag("tag1")
-    @DisplayName("Тест 1")
+    @Order(2)
+//    @DisplayName("Тест 1")
     void test1() {
         System.out.println("Тест 1");
         List<QA> qaList = qaService.getAll();
@@ -72,11 +73,11 @@ public class QaServiceTest {
     @Test
     @Timeout(value = 2, unit = SECONDS)
     void timeout_test() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(1900);
     }
 
     @RepeatedTest(value = 5)
-    void repeated_test() {
+    void repeated_test(TestInfo testInfo, RepetitionInfo repetitionInfo) {
         assertFalse(false);
     }
 }

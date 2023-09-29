@@ -1,15 +1,17 @@
 package examples.tests;
 
 import examples.extensions.MyExtension;
+import examples.extensions.ServiceLoaderExtension;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(
-        MyExtension.class
-)
+@ExtendWith({MyExtension.class})
 @DisplayName("Тестовый класс")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class JUnitLifecycleTest {
+
+//    @RegisterExtension
+//    static MyExtension myExtension = new MyExtension();
 
     @BeforeAll
     void beforeAll() {
@@ -27,7 +29,8 @@ public class JUnitLifecycleTest {
     // mvn clean test -Dgroups=tag1
     @Tag("tag1")
     @DisplayName("Тест 1")
-    void test1() {
+    void test1(TestInfo testInfo) {
+        System.out.println("Тестовый класс: " + testInfo.getTestClass());
         System.out.println("Тест 1");
     }
 
