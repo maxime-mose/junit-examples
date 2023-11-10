@@ -11,7 +11,7 @@ import static java.util.UUID.randomUUID;
 
 public class CustomerService {
     private static final Faker faker = new Faker(Locale.of("RU"));
-    private final List<Customer> customers = new ArrayList<>();
+     final List<Customer> customers = new ArrayList<>();
 
     public List<String> getAllCustomerNames() {
         return customers.stream().map(Customer::getName).sorted().toList();
