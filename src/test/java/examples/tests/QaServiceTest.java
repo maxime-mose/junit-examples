@@ -7,7 +7,6 @@ import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import java.util.List;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Тесты на QAService")
@@ -71,7 +70,7 @@ public class QaServiceTest {
     }
 
     @Test
-    @Timeout(value = 2, unit = SECONDS)
+    @Timeout(value = 2)
     void timeout_test() throws InterruptedException {
         Thread.sleep(1900);
     }
