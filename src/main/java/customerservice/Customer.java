@@ -7,6 +7,9 @@ public class Customer {
     private String name;
     private String phone;
 
+    public Customer() {
+    }
+
     public Customer(UUID id, String name, String phone) {
         this.id = id;
         this.name = name;
